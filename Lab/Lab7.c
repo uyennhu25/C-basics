@@ -4,27 +4,21 @@
 #define YEARS 5
 #define MONTHS 12
 
-int prime(int i, int primeArr[], int primeCount) {
-    for (int a = 0; a < primeCount; a++) {
-        if (i % primeArr[a]==0) {
-            return 0;
-        }
-    }
-    return 1;
-}
+int prime(int i, int primeArr[], int primeCount);
 
 int main() {
     int myArr[5] = {1, 3, 5, 7, 9};
 
     //Bai 1
     printf("Lab 7.1\n");
-    for (int i = 0; i < sizeof(myArr)/sizeof(myArr[0]); i++) {
+    int sizeOfArr= (int)(sizeof(myArr)/sizeof(myArr[0]));
+    for (int i = 0; i < sizeOfArr; i++) {
         printf("%d", myArr[i]);
     }
 
     //Bai 2
     printf("\nLab 7.2\n");
-    for (int i = sizeof(myArr)/sizeof(myArr[0]) - 1; i > -1; i--) {
+    for (int i = sizeOfArr - 1; i > -1; i--) {
         printf("%d", myArr[i]);
     }
 
@@ -44,7 +38,7 @@ int main() {
     }
 
     //Bai 4
-    float rain[YEARS][MONTHS] = {
+    double rain[YEARS][MONTHS] = {
         {4.3, 4.3, 4.3, 3.0, 2.0, 1.2, 0.2, 0.2, 0.4, 2.4, 3.5, 6.6},
         {8.5, 8.2, 1.2, 1.6, 2.4, 0.0, 5.2, 0.9, 0.3, 0.9, 1.4, 7.3},
         {9.1, 8.5, 6.7, 4.3, 2.1, 0.8, 0.2, 0.2, 1.1, 2.3, 6.1, 8.4},
@@ -53,9 +47,9 @@ int main() {
     };
 
     int year, month;
-    float subtot, total = 0.0;
+    double subtot, total = 0.0;
 
-    printf("Yearly Totals:\n");
+    printf("\nYearly Totals:\n");
     for (year = 0; year < YEARS; year++) {
         subtot = 0.0;
         for (month = 0; month < MONTHS; month++) {
@@ -112,4 +106,13 @@ int main() {
     }
     return 0;
 
+}
+
+int prime(int i, int primeArr[], int primeCount) {
+    for (int a = 0; a < primeCount; a++) {
+        if (i % primeArr[a]==0) {
+            return 0;
+        }
+    }
+    return 1;
 }

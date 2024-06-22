@@ -4,8 +4,8 @@
 
 #define MAX 10000
 
-int renameFile(FILE *file);
-int removeFile(FILE *file);
+int renameFile();
+int removeFile();
 
 int main () {
     FILE *pfile = NULL;
@@ -17,14 +17,14 @@ int main () {
     printf("Failed to open %s.'n", filename);
     }
 
-    renameFile(pfile);
-    removeFile(pfile);
+    renameFile();
+    removeFile();
 
     fclose(pfile);
     return 0;
 }
 
-int renameFile(FILE *file) {
+int renameFile() {
     char oldname[MAX], newname[MAX];
     printf("Hay nhap ten file can doi\n");
     scanf("%s", oldname);
@@ -35,7 +35,7 @@ int renameFile(FILE *file) {
     int re = rename(oldname, newname);
     return re;
 }
-int removeFile(FILE *file) {
+int removeFile() {
     char buffer[MAX];
     printf("Hay nhap ten file can xoa\n");
     scanf("%s", buffer);

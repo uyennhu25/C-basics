@@ -137,8 +137,9 @@ int max() {
         scanf("%d", &n);
     }
 
-    int arr[n], *ptr;
-    ptr = (int *)malloc(n * sizeof(int));
+    int arr[n];
+    int *ptr = arr;
+    ptr = (int *)malloc((unsigned long long int)n * sizeof(int));
     for (int i = 0; i < n; i++) {
         printf("Nhap phan tu so %d: ", i+1);
         scanf("%d", (ptr + i));

@@ -11,7 +11,7 @@ int main() {
     float *pFloat = &b;
     char *pChar = &c;
 
-    printf("%p\n %p\n %p\n", pInt, pFloat, pChar);
+    printf("%p\n %p\n %p\n", (void*)pInt, (void*)pFloat, (void*)pChar);
     printf("%d\n %f\n %c\n", *pInt, *pFloat, *pChar);
 
     //Lab 10.2

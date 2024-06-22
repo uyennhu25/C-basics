@@ -22,7 +22,7 @@ int main() {
     int n;
     printf("\nEnter number of strings: ");
     scanf("%d", &n);
-    char *arr = malloc(n*MAXLENGTH);
+    char *arr = malloc((unsigned long long int)n*MAXLENGTH);
     arrangeString(n, arr);
     chuoiCon();
     loaiBoKyTu();
@@ -38,11 +38,11 @@ int stringLength(const char *string) {
 
 void mergeString(char *arr, const char *str1, const char *str2) {
     int a, b;
-    for (int a = 0; str1[a] != '\0'; a++) {
+    for (a = 0; str1[a] != '\0'; a++) {
         arr[a] = str1[a];
     }
 
-    for (int b = 0; str2[b] != '\0'; b++) {
+    for (b = 0; str2[b] != '\0'; b++) {
         arr[a + b] = str2[b];
     }
 }
@@ -83,7 +83,7 @@ bool chuoiCon(){
     char str1[MAXLENGTH], str2[MAXLENGTH];
     printf("\nEnter first string: ");
     scanf("%s", str1);
-    printf("\nEnter first string: ");
+    printf("\nEnter second string: ");
     scanf("%s", str2);
 
     /*int i = 0;
@@ -103,7 +103,7 @@ bool chuoiCon(){
         strcpy(str2,str1);
     }
     int i;
-    for (i = 0; i <= strlen(str1) - strlen(str2); i++) {
+    for (i = 0; i <= (int)(strlen(str1) - strlen(str2)); i++) {
         if (strncmp(str1 + i, str2, strlen(str2)) == 0) {
             printf("La chuoi con");
             return true;

@@ -3,8 +3,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-void addDistance(distance_t dst1, distance_t dst2);
-
 struct ngaysinh {
     int ngay;
     int thang;
@@ -29,6 +27,8 @@ struct hocsinh {
     float gpa;
 };
 
+void addDistance(distance_t dst1, distance_t dst2);
+
 int main () {
     printf("Nhap ten nv: ");
     fgets(nv1.ten, sizeof(nv1.ten), stdin);
@@ -51,46 +51,51 @@ int main () {
 
     addDistance(distance_1, distance_2);
 
-
     int choice;
     int i = 0;
+    char search[25];
     struct hocsinh hocsinh[30];
-    printf("Hay lua chon\n1. Nhap thong tin hoc sinh\n2. Tim kiem hoc sinh\n3. Thoat\n");
-    scanf("%d", &choice);
-    printf("\n__________________________\n");
-    switch (choice)
-
-    {
-    case 1:
-        printf("Nhap ten hoc sinh: ");
-        fgets(hocsinh[i].hoten, sizeof(hocsinh[i].hoten), stdin);
-
-        printf("Nhap tuoi hoc sinh: ");
-        scanf("%d", &hocsinh[i].tuoi);
-
-        printf("Nhap dia chi hoc sinh: ");
-        fgets(hocsinh[i].diachi, sizeof(hocsinh[i].diachi), stdin);
-
-        printf("Nhap gpa hoc sinh: ");
-        scanf("%f", &hocsinh[i].gpa);
-        break;
-    case 2:
-        char search[25];
-        scanf("%s", search);
-        for (int a = 0; a < i; a++) {
-            if (strcmp(hocsinh[i].hoten, search) == 0) {
-                printf("Hoc sinh da ton tai!");
-            }
-            else {
-                printf("Khong tim thay hoc sinh.");
-            }
-        }
-        break;
-    case 3:
-        break;
-    default:
-        printf("Moi nhap lai lua chon");
+    while(1) {
+        printf("Hay lua chon\n1. Nhap thong tin hoc sinh\n2. Tim kiem hoc sinh\n3. Thoat\n");
         scanf("%d", &choice);
+        printf("__________________________\n");
+        switch (choice)
+        {
+        case 1:
+            printf("\nNhap ten hoc sinh: ");
+            //fgets(hocsinh[i].hoten, sizeof(hocsinh[i].hoten), stdin);
+            scanf("%s", hocsinh[i].hoten);
+
+            printf("\nNhap tuoi hoc sinh: ");
+            scanf("%d", &hocsinh[i].tuoi);
+
+            printf("\nNhap dia chi hoc sinh: ");
+            //fgets(hocsinh[i].diachi, sizeof(hocsinh[i].diachi), stdin);
+            scanf("%s", hocsinh[i].diachi);
+
+            printf("\nNhap gpa hoc sinh: ");
+            scanf("%f", &hocsinh[i].gpa);
+
+            i++;
+            break;
+        case 2:
+            printf("Tim ten hoc sinh: ");
+            scanf("%s", search);
+            for (int a = 0; a < i; a++) {
+                if (strcmp(hocsinh[a].hoten, search) == 0) {
+                    printf("\nHoc sinh da ton tai!\n");
+                }
+                else {
+                    printf("\nKhong tim thay hoc sinh.\n");
+                }
+            }
+            break;
+        case 3:
+            break;
+        default:
+            printf("Moi nhap lai lua chon");
+            scanf("%d", &choice);
+        }
     }
     return 0;
 } 

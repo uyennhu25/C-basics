@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 
-
+int UCLN(int a, int b);
+float giaTriTuyetDoi(float a);
+long giaithua(int a);
+double khoangcach(float Ax, float Ay, float Bx, float By);
 void displayBoard();
 void markBoard(char mark, int choice);
 int checkForWin();
@@ -55,7 +58,7 @@ int UCLN(int a, int b) {
     return a;
 }
 
-float giaTriTuyetDoi(int a) {
+float giaTriTuyetDoi(float a) {
     if (a < 0){
         return -a;
     }
@@ -69,7 +72,7 @@ long giaithua(int a) {
     return a*giaithua(a-1);
 }
 
-float khoangcach(float Ax, float Ay, float Bx, float By) {
+double khoangcach(float Ax, float Ay, float Bx, float By) {
     return sqrt((Ax - Bx)*(Ax - Bx) + (Ay - By)*(Ay - By));
 }
 
