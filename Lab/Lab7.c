@@ -84,6 +84,7 @@ int main() {
         scanf("%d", &a[i]);
     }
 
+    //Draw an algorithm visualizer for this -> recode for lab + use pointers
     int temp;
     for (int i = 0; i<n-1 ; i++) {
         for (int j = i+1; j<n ; j++) {

@@ -8,7 +8,7 @@ int renameFile();
 int removeFile();
 
 int main () {
-    FILE *pfile = NULL;
+    /*FILE *pfile = NULL;
     char *filename = "test.txt";
 
 
@@ -16,11 +16,11 @@ int main () {
     if (pfile == NULL) {
     printf("Failed to open %s.'n", filename);
     }
+    fclose(pfile);*/
 
-    renameFile();
-    removeFile();
+    printf("%d %d", renameFile(), removeFile());
 
-    fclose(pfile);
+
     return 0;
 }
 
