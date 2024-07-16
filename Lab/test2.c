@@ -66,7 +66,6 @@ int maximumGain(char* s, int x, int y) {
         bot_score = y;
     }
 
-    // Removing first top substrings cause they give more points
     char stack[strlen(s) + 1];
     int stack_len = 0;
     for (int i = 0; s[i] != '\0'; i++) {
@@ -79,7 +78,6 @@ int maximumGain(char* s, int x, int y) {
         }
     }
 
-    // Removing bot substrings cause they give less or equal amount of scores
     char new_stack[strlen(s) + 1];
     int new_stack_len = 0;
     for (int i = 0; i < stack_len; i++) {
