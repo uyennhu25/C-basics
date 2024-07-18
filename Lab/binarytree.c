@@ -1,46 +1,79 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
-    int data;
-    struct Node* left;
-    struct Node* right;
-};
+typedef struct TreeNode {
+    int val;
+    struct TreeNode* left;
+    struct TreeNode* right;
+} TreeNode;
 
-struct Node* createNode(int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = data;
+// Create a new tree node
+TreeNode* createNode(int val) {
+    TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    newNode->val = val;
     newNode->left = NULL;
     newNode->right = NULL;
     return newNode;
 }
 
-struct Node* insert(struct Node* node, int data) {
-    if (node == NULL) {
-        return createNode(data);
+// Function to add distances to an array and return the number of good pairs
+int dfs(TreeNode* node, int distance, int* count) {
+    if (!node) return 0;
+    
+    if (!node->left && !node->right) {
+        int *distances = (int *)malloc(sizeof(int) * distance);
+        for (int i = 0; i < distance; i++) distances[i] = 0;
+        distances[0] = 1;
+        return distances;
     }
-    if (data < node->data) {
-        node->left = insert(node->left, data);
-    } else if (data > node->data) {
-        node->right = insert(node->right, data);
+
+    int *leftDistances = dfs(node->left, distance, count);
+    int *rightDistances = dfs(node->right, distance, count);
+
+    for (int i = 0; i < distance; i++) {
+        for (int j = 0; j < distance; j++) {
+            if (i + j + 2 <= distance) {
+                *count += leftDistances[i] * rightDistances[j];
+            }
+        }
     }
-    return node;
+
+    int *distances = (int *)malloc(sizeof(int) * distance);
+    for (int i = 0; i < distance; i++) distances[i] = 0;
+    for (int i = 0; i < distance - 1; i++) {
+        distances[i + 1] = leftDistances[i] + rightDistances[i];
+    }
+
+    free(leftDistances);
+    free(rightDistances);
+
+    return distances;
 }
 
-/*
-class Solution:
-    def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
-        to_delete_set = set(to_delete)
-        res = []
+int countPairs(TreeNode* root, int distance) {
+    int count = 0;
+    dfs(root, distance, &count);
+    return count;
+}
 
-        def helper(root, is_root):
-            if not root:
-                return None
-            root_deleted = root.val in to_delete_set
-            if is_root and not root_deleted:
-                res.append(root)
-            root.left = helper(root.left, root_deleted)
-            root.right = helper(root.right, root_deleted)
-            return None if root_deleted else root
-        helper(root, True)
-        return res*/
+int main() {
+    // Example tree:
+    //     1
+    //    / \
+    //   2   3
+    //  /   / \
+    // 4   5   6
+    TreeNode* root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    root->left->left = createNode(4);
+    root->right->left = createNode(5);
+    root->right->right = createNode(6);
+
+    int distance = 3;
+    int result = countPairs(root, distance);
+    printf("Number of good leaf node pairs: %d\n", result);
+
+    // Free the allocated memory (not shown for simplicity)
+    return 0;
+}
