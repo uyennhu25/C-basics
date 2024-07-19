@@ -17,7 +17,7 @@ TreeNode* createNode(int val) {
 }
 
 // Function to add distances to an array and return the number of good pairs
-int dfs(TreeNode* node, int distance, int* count) {
+int* dfs(TreeNode* node, int distance, int* count) {
     if (!node) return 0;
     
     if (!node->left && !node->right) {
